@@ -24,6 +24,15 @@ async def on_message(message):
 
     if message.content.lower() == "ping":
         await message.channel.send("pong!")
+    
+    #Connecting bot ti voice channel in discord     
+    elif message.content.lower() == "join":
+        if message.author.voice:
+            channel = message.author.voice.channel
+            await channel.connect()
+            await message.channel.send(f"Joined {channel.name}!!")
+        else:
+            await message.channel.send(f"You are not in a voice channel!")
 
 #Start the bot
 client.run(TOKEN)
